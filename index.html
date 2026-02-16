@@ -448,6 +448,7 @@ footer p { font-size: 12px; opacity: 0.5; }
     <button class="tab-btn" data-tab="day1">第2週・Day1</button>
     <button class="tab-btn" data-tab="day2">第2週・Day2</button>
     <button class="tab-btn" data-tab="day3">第2週・Day3</button>
+    <button class="tab-btn" style="border-left: 2px solid var(--border); margin-left: 4px; background: var(--accent-light);" data-tab="compare">Week1 vs 2 比較</button>
   </div>
 </nav>
 
@@ -2532,6 +2533,477 @@ footer p { font-size: 12px; opacity: 0.5; }
       </div>
     </div>
   </section>
+</div>
+
+<!-- ========== TAB: WEEK 1 vs WEEK 2 COMPARISON ========== -->
+<div class="tab-content" id="tab-compare">
+
+  <!-- Hero-style header -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">WEEK 1 vs WEEK 2</div>
+        <div class="section-title">第1週「当日応募型」 vs 第2週「ボトムアップ型」総合比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>第1週「当日応募型」</th>
+              <th>第2週「ボトムアップ型」</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>コンセプト</td>
+              <td>応募のハードルをその場でクリアする</td>
+              <td>不安を一つずつ解消し「できた」を積み重ねる</td>
+            </tr>
+            <tr>
+              <td>仮説</td>
+              <td>応募ハードルを下げれば獲得率UP</td>
+              <td>不安解消で行動意欲UP → 獲得率UP</td>
+            </tr>
+            <tr>
+              <td>主な手法</td>
+              <td>講座中にその場で応募（一斉応募会）</td>
+              <td>講師による個別添削・ハンズオンワーク</td>
+            </tr>
+            <tr>
+              <td>開催期間</td>
+              <td>2/3〜2/5（月〜水）</td>
+              <td>2/13〜2/15（木〜土）</td>
+            </tr>
+            <tr>
+              <td>講師</td>
+              <td>寺町 → 安藤 → 福住</td>
+              <td>寺町 → 安藤 → 福住</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Comparison -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">KEY METRICS</div>
+        <div class="section-title">主要KPI比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>指標</th>
+              <th>第1週</th>
+              <th>第2週</th>
+              <th>差分</th>
+              <th>優位</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>延べ回答数</td>
+              <td>約180件</td>
+              <td>56件</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>平均満足度</td>
+              <td class="highlight">4.52</td>
+              <td>4.43</td>
+              <td style="color: var(--danger);">-0.09</td>
+              <td style="color: var(--accent); font-weight: 700;">W1</td>
+            </tr>
+            <tr>
+              <td>平均理解度</td>
+              <td>4.09</td>
+              <td class="highlight">4.32</td>
+              <td style="color: var(--success); font-weight: 700;">+0.23</td>
+              <td style="color: var(--accent); font-weight: 700;">W2</td>
+            </tr>
+            <tr>
+              <td>スピード「ちょうど良い」</td>
+              <td class="highlight">91.7%</td>
+              <td>76.8%</td>
+              <td style="color: var(--danger);">-14.9pt</td>
+              <td style="color: var(--accent); font-weight: 700;">W1</td>
+            </tr>
+            <tr>
+              <td>今すぐ実践できそう</td>
+              <td>36.1%</td>
+              <td class="highlight">46.4%</td>
+              <td style="color: var(--success); font-weight: 700;">+10.3pt</td>
+              <td style="color: var(--accent); font-weight: 700;">W2</td>
+            </tr>
+            <tr>
+              <td>復習すればできそう</td>
+              <td class="highlight">49.7%</td>
+              <td>35.7%</td>
+              <td style="color: var(--danger);">-14.0pt</td>
+              <td style="color: var(--accent); font-weight: 700;">W1</td>
+            </tr>
+            <tr>
+              <td>不安が残る</td>
+              <td>13.2%</td>
+              <td class="highlight" style="color: var(--warning);">17.9%</td>
+              <td style="color: var(--danger);">+4.7pt</td>
+              <td style="color: var(--accent); font-weight: 700;">W1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insight Cards -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">INSIGHTS</div>
+        <div class="section-title">比較から見える傾向</div>
+      </div>
+      <div class="improvement-grid">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W2は「理解度」で+0.23pt上回る</div>
+            <div class="improvement-count">ボトムアップ型の丁寧な個別指導が理解促進に貢献</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W2は「今すぐ実践できそう」が+10.3pt高い</div>
+            <div class="improvement-count">不安解消により「やれそう」感が高まった</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--accent-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W1は「満足度」で+0.09pt優位</div>
+            <div class="improvement-count">当日応募の達成感・一体感が満足度に寄与</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--accent-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W1は「スピード感」で+14.9pt優位</div>
+            <div class="improvement-count">W2はハンズオン重視で「速い」と感じる層が増加</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anxiety Comparison -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">ANXIETY COMPARISON</div>
+        <div class="section-title">不安項目の週間変化（検証の核心）</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>不安項目</th>
+              <th>第1週</th>
+              <th>第2週</th>
+              <th>変化</th>
+              <th>判定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>プロフィール作成</td>
+              <td>43.9%</td>
+              <td>28.6%</td>
+              <td style="color: var(--success); font-weight: 700;">-15.3pt</td>
+              <td style="color: var(--success); font-weight: 700;">大幅改善</td>
+            </tr>
+            <tr>
+              <td>「応募ボタン」を押す恐怖心</td>
+              <td>28.3%</td>
+              <td>17.9%</td>
+              <td style="color: var(--success); font-weight: 700;">-10.4pt</td>
+              <td style="color: var(--success); font-weight: 700;">大幅改善</td>
+            </tr>
+            <tr>
+              <td>案件のリサーチ・選定</td>
+              <td>32.2%</td>
+              <td>23.2%</td>
+              <td style="color: var(--success); font-weight: 700;">-9.0pt</td>
+              <td style="color: var(--success);">改善</td>
+            </tr>
+            <tr>
+              <td>応募文作成</td>
+              <td>30.0%</td>
+              <td>23.2%</td>
+              <td style="color: var(--success); font-weight: 700;">-6.8pt</td>
+              <td style="color: var(--success);">改善</td>
+            </tr>
+            <tr>
+              <td>クライアントへの返信</td>
+              <td>23.9%</td>
+              <td>21.4%</td>
+              <td style="color: var(--success);">-2.5pt</td>
+              <td style="color: var(--text-tertiary);">微改善</td>
+            </tr>
+            <tr>
+              <td>面談（Zoom等）の実施</td>
+              <td>20.6%</td>
+              <td>25.0%</td>
+              <td style="color: var(--danger); font-weight: 700;">+4.4pt</td>
+              <td style="color: var(--danger); font-weight: 700;">悪化</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="improvement-grid" style="margin-top: 24px;">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">6項目中5項目で不安が減少</div>
+            <div class="improvement-count">ボトムアップ型の不安解消アプローチは概ね有効と判断</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--warning-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">「面談」の不安だけが+4.4pt悪化</div>
+            <div class="improvement-count">W2で面談対応に触れた結果、逆に不安が顕在化した可能性</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Good Points Comparison -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">HIGHLIGHTS COMPARISON</div>
+        <div class="section-title">良かったポイント比較（選択率ベース）</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>良かったポイント</th>
+              <th>第1週</th>
+              <th>第2週</th>
+              <th>変化</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>講師の解説がわかりやすかった</td>
+              <td class="highlight">79.9%</td>
+              <td>66.1%</td>
+              <td style="color: var(--danger);">-13.8pt</td>
+            </tr>
+            <tr>
+              <td>ハンズオンがあった</td>
+              <td>52.9%</td>
+              <td class="highlight">57.1%</td>
+              <td style="color: var(--success); font-weight: 700;">+4.2pt</td>
+            </tr>
+            <tr>
+              <td>ツールが便利だった</td>
+              <td>33.3%</td>
+              <td class="highlight">46.4%</td>
+              <td style="color: var(--success); font-weight: 700;">+13.1pt</td>
+            </tr>
+            <tr>
+              <td>テンプレートがもらえた</td>
+              <td>19.5%</td>
+              <td class="highlight">39.3%</td>
+              <td style="color: var(--success); font-weight: 700;">+19.8pt</td>
+            </tr>
+            <tr>
+              <td>個別の質問に丁寧回答</td>
+              <td class="highlight">26.4%</td>
+              <td>19.6%</td>
+              <td style="color: var(--danger);">-6.8pt</td>
+            </tr>
+            <tr>
+              <td>他の参加者が刺激になった</td>
+              <td>21.3%</td>
+              <td>17.9%</td>
+              <td style="color: var(--danger);">-3.4pt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="improvement-grid" style="margin-top: 24px;">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W2は「ツール」「テンプレート」評価が大幅UP</div>
+            <div class="improvement-count">実践的な素材提供が好評（テンプレ+19.8pt、ツール+13.1pt）</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--accent-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W1は「講師解説」「個別質問」が高評価</div>
+            <div class="improvement-count">大人数でも講師のわかりやすさが際立った（79.9%）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 3 Status Comparison (Key Verification) -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">DAY 3 STATUS</div>
+        <div class="section-title">最終日（Day3）時点のステータス比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>ステータス</th>
+              <th>W1 Day3</th>
+              <th>W2 Day3</th>
+              <th>変化</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1件以上、実際に応募した</td>
+              <td class="highlight">34.9%</td>
+              <td class="highlight">36.8%</td>
+              <td style="color: var(--success); font-weight: 700;">+1.9pt</td>
+            </tr>
+            <tr>
+              <td>案件リサーチ・選定中</td>
+              <td class="highlight">23.3%</td>
+              <td>10.5%</td>
+              <td style="color: var(--danger);">-12.8pt</td>
+            </tr>
+            <tr>
+              <td>クライアントからの返信待ち</td>
+              <td>-</td>
+              <td class="highlight">15.8%</td>
+              <td style="color: var(--success); font-weight: 700;">新規</td>
+            </tr>
+            <tr>
+              <td>案件を獲得した / 獲得経験あり</td>
+              <td>4.7%</td>
+              <td class="highlight">15.8%</td>
+              <td style="color: var(--success); font-weight: 700;">+11.1pt</td>
+            </tr>
+            <tr>
+              <td>まだ何も始めていない</td>
+              <td>9.3%</td>
+              <td class="highlight" style="color: var(--warning);">15.8%</td>
+              <td style="color: var(--danger);">+6.5pt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="improvement-grid" style="margin-top: 24px;">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">W2で「返信待ち」ステータスが新出（15.8%）</div>
+            <div class="improvement-count">応募→返信の先のステップまで進んだ受講者が出現</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">獲得経験者が4.7% → 15.8%に</div>
+            <div class="improvement-count">W2参加者は既に一定の案件獲得実績を持つ層が増加</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Verdict -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">CONCLUSION</div>
+        <div class="section-title">総合所見</div>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card" data-animate style="border-left: 4px solid var(--accent);">
+          <div class="testimonial-quote" style="color: var(--accent-medium);">W1</div>
+          <div class="testimonial-text" style="font-size: 14px; font-weight: 500; color: var(--text-primary);">「当日応募型」の強み</div>
+          <div class="testimonial-text" style="margin-top: 8px;">高い満足度（4.52）とスピード感（91.7%がちょうど良い）。大人数でもわかりやすい講師解説が好評。Day3で応募率34.9%を達成し、「その場で行動させる」仕組みは有効。</div>
+        </div>
+        <div class="testimonial-card" data-animate style="border-left: 4px solid var(--success);">
+          <div class="testimonial-quote" style="color: rgba(5,150,105,0.15);">W2</div>
+          <div class="testimonial-text" style="font-size: 14px; font-weight: 500; color: var(--text-primary);">「ボトムアップ型」の強み</div>
+          <div class="testimonial-text" style="margin-top: 8px;">高い理解度（4.32, +0.23）と即時実践意欲（46.4%）。6項目中5項目で不安が減少。ツール・テンプレートの実践的提供が大幅に好評UP。「返信待ち」ステージに到達した受講者も出現。</div>
+        </div>
+        <div class="testimonial-card" data-animate style="border-left: 4px solid var(--warning);">
+          <div class="testimonial-quote" style="color: rgba(217,119,6,0.15);">!</div>
+          <div class="testimonial-text" style="font-size: 14px; font-weight: 500; color: var(--text-primary);">共通の課題</div>
+          <div class="testimonial-text" style="margin-top: 8px;">面談（Zoom等）の不安が両週とも根強い。W2では逆に+4.4pt悪化しており、面談を具体的に扱うほど不安が顕在化する傾向。第3週以降は面談ロールプレイ等の対策が必要。</div>
+        </div>
+        <div class="testimonial-card" data-animate style="border-left: 4px solid var(--accent);">
+          <div class="testimonial-quote" style="color: var(--accent-medium);">→</div>
+          <div class="testimonial-text" style="font-size: 14px; font-weight: 500; color: var(--text-primary);">第3週以降への提言</div>
+          <div class="testimonial-text" style="margin-top: 8px;">W1の「行動を促す仕組み」とW2の「不安を解消する仕組み」を組み合わせたハイブリッド型が有望。特に面談対応のカバーを強化し、「応募後」のフローを手厚くすることで獲得率の更なる向上が期待できる。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Summary Strip -->
+  <div class="summary-strip">
+    <div class="container">
+      <div class="summary-grid">
+        <div class="summary-item" data-animate>
+          <div class="summary-number">236<span class="unit">件</span></div>
+          <div class="summary-label">延べ回答数（2週合計）</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">5<span class="unit">/6</span></div>
+          <div class="summary-label">不安改善項目数</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">+0.23<span class="unit">pt</span></div>
+          <div class="summary-label">理解度の向上（W2）</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">+10.3<span class="unit">pt</span></div>
+          <div class="summary-label">即実践意欲の向上（W2）</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
