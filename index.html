@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2週まとめ｜クラウドワークス ゼロイチ達成講座</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #FAFBFC;
+  --bg-card: #FFFFFF;
+  --accent: #2563EB;
+  --accent-sub: #3B82F6;
+  --accent-light: rgba(37, 99, 235, 0.08);
+  --accent-lighter: rgba(37, 99, 235, 0.04);
+  --accent-medium: rgba(37, 99, 235, 0.15);
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-tertiary: #9CA3AF;
+  --border: #E5E7EB;
+  --border-light: #F3F4F6;
+  --success: #059669;
+  --success-light: rgba(5, 150, 105, 0.08);
+  --warning: #D97706;
+  --warning-light: rgba(217, 119, 6, 0.08);
+  --danger: #EF4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--accent) 0%, #1D4ED8 100%);
+  color: white;
+  padding: 72px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-label {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.hero h1 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.hero p {
+  font-size: 15px;
+  opacity: 0.85;
+  max-width: 600px;
+  line-height: 1.8;
+}
+.hero-meta {
+  display: flex;
+  gap: 28px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+.hero-meta-item svg { width: 18px; height: 18px; opacity: 0.8; }
+
+/* Tabs */
+.tab-nav {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.tab-nav-inner {
+  display: flex;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  overflow-x: auto;
+}
+.tab-btn {
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  font-family: inherit;
+}
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Section */
+section { padding: 56px 0; }
+.section-header { margin-bottom: 36px; }
+.section-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 24px 20px;
+  border: 1px solid var(--border);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--accent-sub); }
+.kpi-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+.kpi-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.kpi-number .unit { font-size: 18px; font-weight: 600; }
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Bar Chart */
+.bar-chart { display: flex; flex-direction: column; gap: 14px; }
+.bar-item { opacity: 0; transform: translateX(-16px); }
+.bar-item.visible { opacity: 1; transform: translateX(0); transition: opacity 0.4s ease, transform 0.4s ease; }
+.bar-label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.bar-label { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+.bar-value { font-size: 13px; font-weight: 600; color: var(--accent); }
+.bar-track { height: 28px; background: var(--accent-light); border-radius: 7px; overflow: hidden; }
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-sub));
+  border-radius: 7px;
+  width: 0;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.bar-fill.warning { background: linear-gradient(90deg, #D97706, #F59E0B); }
+
+/* Ranking */
+.ranking-list { display: flex; flex-direction: column; gap: 10px; }
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.ranking-item:hover { transform: translateY(-2px); border-color: var(--accent-sub); }
+.ranking-item.visible { opacity: 1; transform: translateX(0); transition: opacity 0.4s ease, transform 0.4s ease; }
+.ranking-rank {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ranking-rank.sub { background: var(--accent-light); color: var(--accent); }
+.ranking-content { flex: 1; }
+.ranking-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.ranking-bar-track { height: 5px; background: var(--accent-light); border-radius: 3px; margin-top: 6px; overflow: hidden; }
+.ranking-bar-fill { height: 100%; background: var(--accent); border-radius: 3px; width: 0; transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.ranking-stat { text-align: right; flex-shrink: 0; }
+.ranking-stat-number { font-size: 18px; font-weight: 700; color: var(--accent); }
+.ranking-stat-number span { font-size: 12px; }
+.ranking-stat-label { font-size: 11px; color: var(--text-tertiary); }
+
+/* 3-col cards */
+.card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.stat-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+.stat-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.stat-card-number { font-size: 28px; font-weight: 800; line-height: 1.1; }
+.stat-card-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-top: 4px; }
+.stat-card-sub { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* Improvement cards */
+.improvement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.improvement-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.improvement-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+.improvement-icon {
+  width: 44px; height: 44px;
+  background: var(--warning-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.improvement-text { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+.improvement-count { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* Testimonials */
+.testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.testimonial-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+.testimonial-quote { font-size: 28px; color: var(--accent-light); font-weight: 800; line-height: 1; margin-bottom: 8px; }
+.testimonial-text { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+.testimonial-tag {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* Comparison table */
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.comparison-table th, .comparison-table td {
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-light);
+}
+.comparison-table th {
+  background: var(--accent-lighter);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.comparison-table th:first-child, .comparison-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+.comparison-table td { color: var(--text-primary); }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table .highlight {
+  font-weight: 700;
+  color: var(--accent);
+}
+.table-wrapper {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.table-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Summary Strip */
+.summary-strip {
+  background: linear-gradient(135deg, var(--accent) 0%, #1D4ED8 100%);
+  color: white;
+  padding: 40px 0;
+}
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+.summary-item { opacity: 0; transform: translateY(16px); }
+.summary-item.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+.summary-number { font-size: 32px; font-weight: 800; }
+.summary-number .unit { font-size: 16px; }
+.summary-label { font-size: 12px; opacity: 0.8; margin-top: 4px; }
+
+/* Day badge */
+.day-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+
+/* Footer */
+footer {
+  background: var(--text-primary);
+  color: white;
+  padding: 28px 0;
+  text-align: center;
+}
+footer p { font-size: 12px; opacity: 0.5; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 24px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-3 { grid-template-columns: 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .improvement-grid { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .comparison-table { font-size: 12px; }
+  .comparison-table th, .comparison-table td { padding: 10px 8px; }
+  section { padding: 40px 0; }
+  .tab-btn { padding: 12px 16px; font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-label">WEEK 2 REPORT</div>
+    <h1>クラウドワークス ゼロイチ達成講座<br>第2週 アンケートレポート</h1>
+    <p>3日間のウェビナーを通じた受講者アンケートの集計・分析レポートです。全体の傾向と各日の詳細をタブで確認できます。</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026年2月13日〜15日（3日間）
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        延べ回答数 56件
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Tab Navigation -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" data-tab="overview">第2週の全体まとめ</button>
+    <button class="tab-btn" data-tab="day1">第2週・第1日目</button>
+    <button class="tab-btn" data-tab="day2">第2週・第2日目</button>
+    <button class="tab-btn" data-tab="day3">第2週・第3日目</button>
+  </div>
+</nav>
+
+<!-- ========== TAB 1: OVERVIEW ========== -->
+<div class="tab-content active" id="tab-overview">
+
+  <!-- KPIs -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">OVERVIEW</div>
+        <div class="section-title">第2週 全体サマリー</div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="56">0</span><span class="unit">件</span></div>
+          <div class="kpi-label">延べ回答数（3日間）</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.43">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">平均満足度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.32">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">平均理解度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="76.8" data-suffix="%">0</span><span class="unit">%</span></div>
+          <div class="kpi-label">スピード「ちょうど良い」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day-by-Day Comparison Table -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">COMPARISON</div>
+        <div class="section-title">日別比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>Day 1（2/13）</th>
+              <th>Day 2（2/14）</th>
+              <th>Day 3（2/15）</th>
+              <th>全体平均</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>回答数</td>
+              <td>17件</td>
+              <td>20件</td>
+              <td>19件</td>
+              <td class="highlight">56件</td>
+            </tr>
+            <tr>
+              <td>満足度</td>
+              <td class="highlight">4.53</td>
+              <td>4.40</td>
+              <td>4.37</td>
+              <td>4.43</td>
+            </tr>
+            <tr>
+              <td>理解度</td>
+              <td class="highlight">4.41</td>
+              <td>4.30</td>
+              <td>4.26</td>
+              <td>4.32</td>
+            </tr>
+            <tr>
+              <td>ちょうど良い</td>
+              <td>76.5%</td>
+              <td>70.0%</td>
+              <td class="highlight">84.2%</td>
+              <td>76.8%</td>
+            </tr>
+            <tr>
+              <td>今すぐ実践できそう</td>
+              <td class="highlight">58.8%</td>
+              <td>50.0%</td>
+              <td>31.6%</td>
+              <td>46.4%</td>
+            </tr>
+            <tr>
+              <td>復習すればできそう</td>
+              <td>23.5%</td>
+              <td>30.0%</td>
+              <td class="highlight">52.6%</td>
+              <td>35.7%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Good Points Ranking -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">HIGHLIGHTS</div>
+        <div class="section-title">良かったポイント（3日間合計）</div>
+      </div>
+      <div class="ranking-list">
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">1</div>
+          <div class="ranking-content">
+            <div class="ranking-name">講師の解説が具体的でわかりやすかった</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="100"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">37<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">2</div>
+          <div class="ranking-content">
+            <div class="ranking-name">実際に手を動かす「ハンズオン」があった</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="86"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">32<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">3</div>
+          <div class="ranking-content">
+            <div class="ranking-name">紹介されたツールが便利だった</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="70"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">26<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">4</div>
+          <div class="ranking-content">
+            <div class="ranking-name">明日から使える実践的なテンプレートがもらえた</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="59"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">22<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">5</div>
+          <div class="ranking-content">
+            <div class="ranking-name">個別の質問に対して丁寧に回答してもらえた</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="30"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">11<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">6</div>
+          <div class="ranking-content">
+            <div class="ranking-name">他の参加者の動きが見えて刺激になった</div>
+            <div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="27"></div></div>
+          </div>
+          <div class="ranking-stat">
+            <div class="ranking-stat-number">10<span>回</span></div>
+            <div class="ranking-stat-label">3日間合計</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Anxiety Points -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">CONCERNS</div>
+        <div class="section-title">不安を感じた点（3日間合計）</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">プロフィール作成（魅力的な見せ方）</span>
+            <span class="bar-value" style="color: var(--warning);">16回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="100"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">面談（Zoom等）の実施</span>
+            <span class="bar-value" style="color: var(--warning);">14回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="87.5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">案件のリサーチ・選定（自分にできるかの判断）</span>
+            <span class="bar-value" style="color: var(--warning);">13回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="81.3"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">応募文作成（刺さるメッセージ）</span>
+            <span class="bar-value" style="color: var(--warning);">13回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="81.3"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">クライアントへの返信・やり取り</span>
+            <span class="bar-value" style="color: var(--warning);">12回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="75"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row">
+            <span class="bar-label">「応募ボタン」を押すことへの恐怖心</span>
+            <span class="bar-value" style="color: var(--warning);">10回</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="62.5"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Improvement -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">FEEDBACK</div>
+        <div class="section-title">改善のご要望（3日間合計）</div>
+      </div>
+      <div class="improvement-grid">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">操作画面をもっと詳しく見せてほしい</div>
+            <div class="improvement-count">9回（3日間合計）</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">もっとゆっくり進めてほしい</div>
+            <div class="improvement-count">7回（3日間合計）</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">全体の時間が短く、駆け足に感じた</div>
+            <div class="improvement-count">5回（3日間合計）</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">情報量が多すぎて消化不良だった</div>
+            <div class="improvement-count">4回（3日間合計）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Voices -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">VOICES</div>
+        <div class="section-title">受講者の声（3日間抜粋）</div>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">とても背中を押していただきました。自分に自信を持つことができました！</div>
+          <div class="testimonial-tag">Day 1</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">もう一度応募文など見直しして、リベンジしていきます。添削などしていただけるとありがたいです。</div>
+          <div class="testimonial-tag">Day 1</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">子育て世代で頑張ってる共感が得れてよかった</div>
+          <div class="testimonial-tag">Day 3</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">何件かこなさないとわからない部分もあるかな、と。ぼちぼちやっていこうと思います。</div>
+          <div class="testimonial-tag">Day 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <div class="summary-strip">
+    <div class="container">
+      <div class="summary-grid">
+        <div class="summary-item" data-animate>
+          <div class="summary-number">56<span class="unit">件</span></div>
+          <div class="summary-label">延べ回答数</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">4.43<span class="unit"> / 5</span></div>
+          <div class="summary-label">平均満足度</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">4.32<span class="unit"> / 5</span></div>
+          <div class="summary-label">平均理解度</div>
+        </div>
+        <div class="summary-item" data-animate>
+          <div class="summary-number">82.1<span class="unit">%</span></div>
+          <div class="summary-label">実践に前向き</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TAB 2: DAY 1 ========== -->
+<div class="tab-content" id="tab-day1">
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="day-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          DAY 1 — 2026/02/13
+        </div>
+        <div class="section-title">第1日目サマリー</div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="17">0</span><span class="unit">件</span></div>
+          <div class="kpi-label">回答数</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.53">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">満足度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.41">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">理解度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="76.5" data-suffix="%">0</span><span class="unit">%</span></div>
+          <div class="kpi-label">スピード「ちょうど良い」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day1 Status -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">STATUS</div>
+        <div class="section-title">受講者の現在のステータス</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">1件以上、実際に応募した</span><span class="bar-value">5名（29.4%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="29.4"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">まだ何も始めていない</span><span class="bar-value">4名（23.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="23.5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プラットフォームに登録済み</span><span class="bar-value">3名（17.6%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="17.6"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件を獲得したことがある</span><span class="bar-value">2名（11.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="11.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件リサーチ・選定中 / プロフィール完了 / 既に獲得</span><span class="bar-value">各1名（5.9%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="17.7"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day1 Practice Readiness -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">READINESS</div>
+        <div class="section-title">実践への準備度</div>
+      </div>
+      <div class="card-grid-3">
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--success-light); color: var(--success);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--success);">58.8%</div>
+          <div class="stat-card-label">今すぐ実践できそう</div>
+          <div class="stat-card-sub">10名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--accent-light); color: var(--accent);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stat-card-number">23.5%</div>
+          <div class="stat-card-label">復習すればできそう</div>
+          <div class="stat-card-sub">4名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--warning-light); color: var(--warning);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--warning);">17.6%</div>
+          <div class="stat-card-label">不安が残る</div>
+          <div class="stat-card-sub">3名</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day1 Good Points -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">HIGHLIGHTS</div>
+        <div class="section-title">良かったポイント</div>
+      </div>
+      <div class="ranking-list">
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">1</div>
+          <div class="ranking-content"><div class="ranking-name">ハンズオン / 講師の解説がわかりやすかった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="76.5"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">各13<span>名</span></div><div class="ranking-stat-label">76.5%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">3</div>
+          <div class="ranking-content"><div class="ranking-name">紹介されたツールが便利だった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="47.1"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">8<span>名</span></div><div class="ranking-stat-label">47.1%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">4</div>
+          <div class="ranking-content"><div class="ranking-name">実践的なテンプレートがもらえた</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="41.2"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">7<span>名</span></div><div class="ranking-stat-label">41.2%</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day1 Anxiety -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">CONCERNS</div>
+        <div class="section-title">不安を感じた点</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プロフィール作成</span><span class="bar-value" style="color:var(--warning);">9名（52.9%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="52.9"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">応募ボタンへの恐怖心</span><span class="bar-value" style="color:var(--warning);">5名（29.4%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="29.4"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">クライアントへの返信・やり取り</span><span class="bar-value" style="color:var(--warning);">5名（29.4%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="29.4"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">面談（Zoom等）の実施</span><span class="bar-value" style="color:var(--warning);">4名（23.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="23.5"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day1 Profile -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">PROFILE</div>
+        <div class="section-title">プロフィール作成状況</div>
+      </div>
+      <div class="card-grid-3" style="grid-template-columns: repeat(2, 1fr); max-width: 500px;">
+        <div class="stat-card" data-animate>
+          <div class="stat-card-number" style="color: var(--success); font-size: 36px;">12<span style="font-size: 18px;">名</span></div>
+          <div class="stat-card-label">作成済み（70.6%）</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-number" style="color: var(--danger); font-size: 36px;">5<span style="font-size: 18px;">名</span></div>
+          <div class="stat-card-label">未作成（29.4%）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== TAB 3: DAY 2 ========== -->
+<div class="tab-content" id="tab-day2">
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="day-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          DAY 2 — 2026/02/14
+        </div>
+        <div class="section-title">第2日目サマリー</div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="20">0</span><span class="unit">件</span></div>
+          <div class="kpi-label">回答数</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.40">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">満足度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.30">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">理解度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="70.0" data-suffix="%">0</span><span class="unit">%</span></div>
+          <div class="kpi-label">スピード「ちょうど良い」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day2 Status -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">STATUS</div>
+        <div class="section-title">受講者の現在のステータス</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">1件以上、実際に応募した</span><span class="bar-value">9名（45.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="45"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">既に案件を獲得した / 獲得したことがある</span><span class="bar-value">4名（20.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="20"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プロフィール作成まで完了</span><span class="bar-value">3名（15.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="15"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プラットフォームに登録済み</span><span class="bar-value">2名（10.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="10"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件リサーチ・選定中</span><span class="bar-value">1名（5.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">まだ何も始めていない</span><span class="bar-value">1名（5.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="5"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day2 Practice Readiness -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">READINESS</div>
+        <div class="section-title">実践への準備度</div>
+      </div>
+      <div class="card-grid-3">
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--success-light); color: var(--success);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--success);">50.0%</div>
+          <div class="stat-card-label">今すぐ実践できそう</div>
+          <div class="stat-card-sub">10名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--accent-light); color: var(--accent);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stat-card-number">30.0%</div>
+          <div class="stat-card-label">復習すればできそう</div>
+          <div class="stat-card-sub">6名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--warning-light); color: var(--warning);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--warning);">20.0%</div>
+          <div class="stat-card-label">不安が残る</div>
+          <div class="stat-card-sub">4名</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day2 Good Points -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">HIGHLIGHTS</div>
+        <div class="section-title">良かったポイント</div>
+      </div>
+      <div class="ranking-list">
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">1</div>
+          <div class="ranking-content"><div class="ranking-name">講師の解説が具体的でわかりやすかった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="70"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">14<span>名</span></div><div class="ranking-stat-label">70.0%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">2</div>
+          <div class="ranking-content"><div class="ranking-name">実際に手を動かす「ハンズオン」があった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="60"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">12<span>名</span></div><div class="ranking-stat-label">60.0%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">3</div>
+          <div class="ranking-content"><div class="ranking-name">紹介されたツールが便利だった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="55"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">11<span>名</span></div><div class="ranking-stat-label">55.0%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">4</div>
+          <div class="ranking-content"><div class="ranking-name">明日から使える実践的なテンプレートがもらえた</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="35"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">7<span>名</span></div><div class="ranking-stat-label">35.0%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">5</div>
+          <div class="ranking-content"><div class="ranking-name">他の参加者の動きが見えて刺激になった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="30"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">6<span>名</span></div><div class="ranking-stat-label">30.0%</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day2 Anxiety -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">CONCERNS</div>
+        <div class="section-title">不安を感じた点</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件のリサーチ・選定</span><span class="bar-value" style="color:var(--warning);">8名（40.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="40"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">応募文作成（刺さるメッセージ）</span><span class="bar-value" style="color:var(--warning);">8名（40.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="40"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">クライアントへの返信・やり取り</span><span class="bar-value" style="color:var(--warning);">7名（35.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="35"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プロフィール作成</span><span class="bar-value" style="color:var(--warning);">6名（30.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="30"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">面談（Zoom等）の実施</span><span class="bar-value" style="color:var(--warning);">5名（25.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="25"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">応募ボタンへの恐怖心</span><span class="bar-value" style="color:var(--warning);">3名（15.0%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="15"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day2 応募ボタン -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">ACTION</div>
+        <div class="section-title">応募ボタンを押せましたか？</div>
+      </div>
+      <div class="card-grid-3" style="grid-template-columns: repeat(2, 1fr); max-width: 500px;">
+        <div class="stat-card" data-animate>
+          <div class="stat-card-number" style="color: var(--success); font-size: 36px;">15<span style="font-size: 18px;">名</span></div>
+          <div class="stat-card-label">押せた（75.0%）</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-number" style="color: var(--danger); font-size: 36px;">5<span style="font-size: 18px;">名</span></div>
+          <div class="stat-card-label">まだ（25.0%）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== TAB 4: DAY 3 ========== -->
+<div class="tab-content" id="tab-day3">
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="day-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          DAY 3 — 2026/02/15
+        </div>
+        <div class="section-title">第3日目サマリー</div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="19">0</span><span class="unit">件</span></div>
+          <div class="kpi-label">回答数</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.37">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">満足度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="4.26">0</span><span class="unit"> / 5</span></div>
+          <div class="kpi-label">理解度</div>
+        </div>
+        <div class="kpi-card" data-animate>
+          <div class="kpi-number"><span class="count-up" data-target="84.2" data-suffix="%">0</span><span class="unit">%</span></div>
+          <div class="kpi-label">スピード「ちょうど良い」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day3 Status -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">STATUS</div>
+        <div class="section-title">受講者の現在のステータス</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">1件以上、実際に応募した</span><span class="bar-value">7名（36.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="36.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">まだ何も始めていない</span><span class="bar-value">3名（15.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="15.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">クライアントからの返信待ち</span><span class="bar-value">3名（15.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="15.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">既に案件を獲得した / 獲得したことがある</span><span class="bar-value">3名（15.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="15.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件リサーチ・選定中</span><span class="bar-value">2名（10.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="10.5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プラットフォームに登録済み</span><span class="bar-value">1名（5.3%）</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="5.3"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day3 Practice Readiness -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">READINESS</div>
+        <div class="section-title">実践への準備度</div>
+      </div>
+      <div class="card-grid-3">
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--success-light); color: var(--success);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--success);">31.6%</div>
+          <div class="stat-card-label">今すぐ実践できそう</div>
+          <div class="stat-card-sub">6名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--accent-light); color: var(--accent);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stat-card-number">52.6%</div>
+          <div class="stat-card-label">復習すればできそう</div>
+          <div class="stat-card-sub">10名</div>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-card-icon" style="background: var(--warning-light); color: var(--warning);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="stat-card-number" style="color: var(--warning);">15.8%</div>
+          <div class="stat-card-label">不安が残る</div>
+          <div class="stat-card-sub">3名</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day3 Good Points -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">HIGHLIGHTS</div>
+        <div class="section-title">良かったポイント</div>
+      </div>
+      <div class="ranking-list">
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">1</div>
+          <div class="ranking-content"><div class="ranking-name">講師の解説が具体的でわかりやすかった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="52.6"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">10<span>名</span></div><div class="ranking-stat-label">52.6%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank">2</div>
+          <div class="ranking-content"><div class="ranking-name">紹介されたツールが便利だった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="36.8"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">7<span>名</span></div><div class="ranking-stat-label">36.8%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">3</div>
+          <div class="ranking-content"><div class="ranking-name">明日から使える実践的なテンプレートがもらえた</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="42.1"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">8<span>名</span></div><div class="ranking-stat-label">42.1%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">4</div>
+          <div class="ranking-content"><div class="ranking-name">実際に手を動かす「ハンズオン」があった</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="36.8"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">7<span>名</span></div><div class="ranking-stat-label">36.8%</div></div>
+        </div>
+        <div class="ranking-item" data-animate>
+          <div class="ranking-rank sub">5</div>
+          <div class="ranking-content"><div class="ranking-name">個別の質問に対して丁寧に回答してもらえた</div><div class="ranking-bar-track"><div class="ranking-bar-fill" data-width="15.8"></div></div></div>
+          <div class="ranking-stat"><div class="ranking-stat-number">3<span>名</span></div><div class="ranking-stat-label">15.8%</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day3 Anxiety -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">CONCERNS</div>
+        <div class="section-title">不安を感じた点</div>
+      </div>
+      <div class="bar-chart">
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">面談（Zoom等）の実施</span><span class="bar-value" style="color:var(--warning);">5名（26.3%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="26.3"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">応募文作成（刺さるメッセージ）</span><span class="bar-value" style="color:var(--warning);">3名（15.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="15.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">プロフィール作成</span><span class="bar-value" style="color:var(--warning);">3名（15.8%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="15.8"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">クライアントへの返信・やり取り</span><span class="bar-value" style="color:var(--warning);">2名（10.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="10.5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">応募ボタンへの恐怖心</span><span class="bar-value" style="color:var(--warning);">2名（10.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="10.5"></div></div>
+        </div>
+        <div class="bar-item" data-animate>
+          <div class="bar-label-row"><span class="bar-label">案件のリサーチ・選定</span><span class="bar-value" style="color:var(--warning);">2名（10.5%）</span></div>
+          <div class="bar-track"><div class="bar-fill warning" data-width="10.5"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day3 Testimonials (Client interaction feedback) -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">VOICES</div>
+        <div class="section-title">クライアントとのやり取りについて</div>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">ツールありがとうございました！もっとツールを使った続きを見てみたかったです。</div>
+          <div class="testimonial-tag">ツール活用</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">実際での面談画面での目線や相槌、緊張を見せないコツが知りたい</div>
+          <div class="testimonial-tag">面談スキル</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">スクール勧誘がゴールであることを早めに見抜く方法を知りたかった</div>
+          <div class="testimonial-tag">リスク回避</div>
+        </div>
+        <div class="testimonial-card" data-animate>
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">子育て世代で頑張ってる共感が得れてよかった</div>
+          <div class="testimonial-tag">コミュニティ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>クラウドワークス ゼロイチ達成講座 第2週レポート | 2026年2月13日〜15日 | 延べ回答数 56件</p>
+  </div>
+</footer>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    // Re-observe elements in newly active tab
+    setTimeout(() => {
+      document.querySelectorAll('.tab-content.active [data-animate]:not(.visible)').forEach(el => observer.observe(el));
+    }, 50);
+  });
+});
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const siblings = el.parentElement ? Array.from(el.parentElement.children) : [];
+      const delay = siblings.indexOf(el) * 80;
+      setTimeout(() => {
+        el.classList.add('visible');
+        const barFill = el.querySelector('.bar-fill');
+        if (barFill) setTimeout(() => { barFill.style.width = barFill.dataset.width + '%'; }, 150);
+        const rankFill = el.querySelector('.ranking-bar-fill');
+        if (rankFill) setTimeout(() => { rankFill.style.width = rankFill.dataset.width + '%'; }, 150);
+      }, delay);
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+// Count-up
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = target % 1 !== 0;
+      const duration = 1000;
+      const startTime = performance.now();
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        el.textContent = isDecimal ? current.toFixed(2) : Math.round(current);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = isDecimal ? target.toFixed(2) : Math.round(target);
+      }
+      requestAnimationFrame(update);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
