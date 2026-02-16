@@ -421,7 +421,7 @@ footer p { font-size: 12px; opacity: 0.5; }
   <div class="container">
     <div class="hero-label">WEEK 2 REPORT</div>
     <h1>クラウドワークス ゼロイチ達成講座<br>第2週 アンケートレポート</h1>
-    <p>3日間のウェビナーを通じた受講者アンケートの集計・分析レポートです。全体の傾向と各日の詳細をタブで確認できます。</p>
+    <p>コンセプト「ボトムアップ型」: 変数の多い部分を講師に実際に見てもらい、不安を一つずつ解消。応募後の返信・面談対応までカバーし、小さな「できた」を積み重ねて案件獲得を目指す3日間。</p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -476,12 +476,215 @@ footer p { font-size: 12px; opacity: 0.5; }
     </div>
   </section>
 
-  <!-- Day-by-Day Comparison Table -->
+  <!-- Experiment Concept -->
   <section style="background: var(--accent-lighter);">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">COMPARISON</div>
-        <div class="section-title">日別比較</div>
+        <div class="section-label">CONCEPT</div>
+        <div class="section-title">実験設計と検証ポイント</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>第1週「当日応募型」</th>
+              <th>第2週「ボトムアップ型」</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>コンセプト</td>
+              <td>応募のハードルを<br>その場でクリアする</td>
+              <td>不安を一つずつ解消し<br>小さな「できた」を積み重ねる</td>
+            </tr>
+            <tr>
+              <td>仮説</td>
+              <td>応募ハードルを下げれば<br>案件獲得率が上がる</td>
+              <td>不安解消で行動意欲が高まり<br>結果的に獲得率が上がる</td>
+            </tr>
+            <tr>
+              <td>主な手法</td>
+              <td>講座中にその場で応募</td>
+              <td>講師による個別添削・<br>ハンズオンワーク</td>
+            </tr>
+            <tr>
+              <td>検証指標</td>
+              <td>応募数・即時行動率</td>
+              <td class="highlight">不安項目の変化 × 案件獲得率</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Week 1 vs Week 2 Comparison -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">WEEK COMPARISON</div>
+        <div class="section-title">第1週 vs 第2週 主要指標比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>指標</th>
+              <th>第1週（当日応募型）</th>
+              <th>第2週（ボトムアップ型）</th>
+              <th>差分</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>延べ回答数</td>
+              <td>約180件</td>
+              <td>56件</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>平均満足度</td>
+              <td class="highlight">4.52</td>
+              <td>4.43</td>
+              <td style="color: var(--danger);">-0.09</td>
+            </tr>
+            <tr>
+              <td>平均理解度</td>
+              <td>4.09</td>
+              <td class="highlight">4.32</td>
+              <td style="color: var(--success); font-weight: 700;">+0.23</td>
+            </tr>
+            <tr>
+              <td>スピード「ちょうど良い」</td>
+              <td>71.1%</td>
+              <td class="highlight">76.8%</td>
+              <td style="color: var(--success); font-weight: 700;">+5.7pt</td>
+            </tr>
+            <tr>
+              <td>今すぐ実践できそう</td>
+              <td class="highlight">56.1%</td>
+              <td>46.4%</td>
+              <td style="color: var(--danger);">-9.7pt</td>
+            </tr>
+            <tr>
+              <td>復習すればできそう</td>
+              <td>25.6%</td>
+              <td class="highlight">35.7%</td>
+              <td style="color: var(--success); font-weight: 700;">+10.1pt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="improvement-grid" style="margin-top: 24px;">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">理解度が+0.23ポイント向上</div>
+            <div class="improvement-count">ボトムアップ型の丁寧な指導が効果的</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--accent-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">「復習すればできそう」が+10.1pt増加</div>
+            <div class="improvement-count">学んだ内容を定着させる意欲が高い</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Week-over-Week Anxiety Comparison -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">KEY VERIFICATION</div>
+        <div class="section-title">不安項目の週間比較（検証ポイント）</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>不安項目</th>
+              <th>第1週</th>
+              <th>第2週</th>
+              <th>変化</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>プロフィール作成</td>
+              <td>43.9%</td>
+              <td>28.6%</td>
+              <td style="color: var(--success); font-weight: 700;">-15.3pt</td>
+            </tr>
+            <tr>
+              <td>「応募ボタン」を押す恐怖心</td>
+              <td>28.3%</td>
+              <td>17.9%</td>
+              <td style="color: var(--success); font-weight: 700;">-10.4pt</td>
+            </tr>
+            <tr>
+              <td>案件のリサーチ・選定</td>
+              <td>32.2%</td>
+              <td>23.2%</td>
+              <td style="color: var(--success); font-weight: 700;">-9.0pt</td>
+            </tr>
+            <tr>
+              <td>応募文作成</td>
+              <td>30.0%</td>
+              <td>23.2%</td>
+              <td style="color: var(--success); font-weight: 700;">-6.8pt</td>
+            </tr>
+            <tr>
+              <td>クライアントへの返信・やり取り</td>
+              <td>23.9%</td>
+              <td>21.4%</td>
+              <td style="color: var(--success); font-weight: 700;">-2.5pt</td>
+            </tr>
+            <tr>
+              <td>面談（Zoom等）の実施</td>
+              <td>20.6%</td>
+              <td>25.0%</td>
+              <td style="color: var(--danger);">+4.4pt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="improvement-grid" style="margin-top: 24px;">
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--success-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">6項目中5項目で不安が減少</div>
+            <div class="improvement-count">ボトムアップ型の不安解消アプローチが有効</div>
+          </div>
+        </div>
+        <div class="improvement-card" data-animate>
+          <div class="improvement-icon" style="background: var(--warning-light);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <div class="improvement-text">面談の不安のみ+4.4pt増加</div>
+            <div class="improvement-count">返信・面談対応のカバー範囲を拡大する余地あり</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day-by-Day Comparison Table -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">DAILY BREAKDOWN</div>
+        <div class="section-title">第2週 日別比較</div>
       </div>
       <div class="table-wrapper" data-animate>
         <table class="comparison-table">
@@ -536,6 +739,42 @@ footer p { font-size: 12px; opacity: 0.5; }
               <td>30.0%</td>
               <td class="highlight">52.6%</td>
               <td>35.7%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Week 1 vs Week 2 Schedule -->
+  <section style="background: var(--accent-lighter);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">SCHEDULE</div>
+        <div class="section-title">週間スケジュール比較</div>
+      </div>
+      <div class="table-wrapper" data-animate>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Day 1</th>
+              <th>Day 2</th>
+              <th>Day 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 600;">第1週<br><span style="font-size:11px; color: var(--text-tertiary);">当日応募型</span></td>
+              <td>寺町<br><span style="font-size:11px; color: var(--text-tertiary);">案件獲得に向けた基礎</span></td>
+              <td>安藤<br><span style="font-size:11px; color: var(--text-tertiary);">応募・提案スキル</span></td>
+              <td>福住<br><span style="font-size:11px; color: var(--text-tertiary);">実践・案件獲得</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">第2週<br><span style="font-size:11px; color: var(--text-tertiary);">ボトムアップ型</span></td>
+              <td>寺町<br><span style="font-size:11px; color: var(--text-tertiary);">プロフィール添削</span></td>
+              <td>安藤<br><span style="font-size:11px; color: var(--text-tertiary);">応募文・返信対応</span></td>
+              <td>福住<br><span style="font-size:11px; color: var(--text-tertiary);">面談対応・獲得</span></td>
             </tr>
           </tbody>
         </table>
